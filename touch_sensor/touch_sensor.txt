@@ -1,0 +1,19 @@
+cfg={}
+     cfg.ssid=myssid
+     cfg.pwd=taralshah
+wifi.setmode(wifi.SOFTAP)
+wifi.ap.config(cfg)
+
+gpio.mode(1, gpio.INPUT, gpio.PULLUP)
+
+srv=net.createServer(net.TCP)
+srvlisten(80,function(conn)
+
+local n0 = 0
+n0 = gpio.read(1)
+print(n0)
+connsend(!DOCTYPE htmlhtmlheadmeta http-equiv=refresh content=3headbodypbRead pinbbrGPIO0 status ..n0..pbodyhtml)
+
+connon(sent,function(conn) connclose() end)
+end
+)

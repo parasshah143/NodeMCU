@@ -1,0 +1,61 @@
+cfg={}
+     cfg.ssid="NodeMCU"
+     cfg.pwd="taralshah"
+wifi.setmode(wifi.SOFTAP)
+wifi.ap.config(cfg)
+gpio.mode(0, gpio.INPUT, gpio.PULLDOWN)
+gpio.mode(1, gpio.INPUT, gpio.PULLUP)
+gpio.mode(2, gpio.INPUT, gpio.PULLUP)
+gpio.mode(3, gpio.INPUT, gpio.PULLUP)
+gpio.mode(4, gpio.INPUT, gpio.PULLUP)
+gpio.mode(5, gpio.INPUT, gpio.PULLUP)
+gpio.mode(6, gpio.INPUT, gpio.PULLUP)
+gpio.mode(7, gpio.INPUT, gpio.PULLUP)
+gpio.mode(8, gpio.INPUT, gpio.PULLUP)
+
+srv=net.createServer(net.TCP)
+srv:listen(80,function(conn)
+
+local n0 = 0
+n0 = gpio.read(0)
+print(n0)
+conn:send("<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"3\"></head><body><p><b>Read pin</b><br>GPIO0 status "..n0.."</p></body></html>")
+
+local n1 = 0
+n1= gpio.read(1)
+print(n1)
+conn:send("<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"3\"></head><body><p><b>Read pin</b><br>GPIO1 status "..n1.."</p></body></html>")
+
+local n2 = 0
+n2 = gpio.read(2)
+print(n2)
+conn:send("<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"3\"></head><body><p><b>Read pin</b><br>GPIO2 status "..n2.."</p></body></html>")
+
+local n3 = 0
+n3 = gpio.read(3)
+print(n3)
+conn:send("<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"3\"></head><body><p><b>Read pin</b><br>GPIO3 status "..n3.."</p></body></html>")
+
+local n4 = 0
+n4 = gpio.read(4)
+print(n4)
+conn:send("<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"3\"></head><body><p><b>Read pin</b><br>GPIO4 status "..n4.."</p></body></html>")
+
+local n5 = 0
+n5 = gpio.read(5)
+print(n5)
+conn:send("<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"3\"></head><body><p><b>Read pin</b><br>GPIO5 status "..n5.."</p></body></html>")
+
+local n6 = 0
+n6 = gpio.read(6)
+print(n6)
+conn:send("<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"3\"></head><body><p><b>Read pin</b><br>GPIO6 status "..n6.."</p></body></html>")
+
+local n7 = 0
+n7 = gpio.read(7)
+print(n7)
+conn:send("<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"3\"></head><body><p><b>Read pin</b><br>GPIO7 status "..n7.."</p></body></html>")
+
+
+conn:on("sent",function(conn) conn:close() end)
+end)
